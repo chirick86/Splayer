@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "splayer"
+version = "0.1.0"
+
+dependencies = [
+    "spotipy",
+    "mutagen",
+    "tqdm"
+]
+
+
+[project.scripts]
+splayer = "splayer.cli:main"
+
+
+[tool.setuptools.packages.find]
+where = ["."]
