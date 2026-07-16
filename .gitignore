@@ -35,3 +35,6 @@ Thumbs.db
 *.log
 .env
 .env.*
+
+# Personal notes
+PLAN.md
