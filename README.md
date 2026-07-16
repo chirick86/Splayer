@@ -8,27 +8,17 @@ Splayer is a thin CLI wrapper around Spotipy for controlling Spotify playback an
 2. Clone this repository:
 
 ```bash
-git clone https://github.com/<your-username>/splayer.git
+git clone https://github.com/chirick86/splayer.git
 cd splayer
 ```
 
-3. Create and activate a virtual environment:
+1. Install Splayer (with dependencies):
 
 ```bash
-python -m venv .venv
-# Windows PowerShell
-.\.venv\Scripts\Activate.ps1
-# macOS/Linux
-source .venv/bin/activate
+pip install .
 ```
 
-4. Install the package:
-
-```bash
-pip install -e .
-```
-
-5. Check that the command is available:
+1. Check that the command is available:
 
 ```bash
 splayer --help
