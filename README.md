@@ -56,31 +56,3 @@ options:
 Tip: run 'splayer <command> -h' to see help for any command.
 Playlist help examples: 'splayer list -h' or 'splayer list --help'
 ```
-
-### `splayer list --help`
-
-```text
-usage: splayer list [-h] [--new NAME | --default PLAYLIST | --add QUERY |
-                    --tracks PLAYLIST | --add-current PLAYLIST |
-                    --add-track PLAYLIST TRACK_REF]
-                    [playlist]
-
-positional arguments:
-  playlist              Play playlist by index, name, or URI when no option is used
-
-options:
-  -h, --help            show this help message and exit
-  --new NAME            Create a private playlist
-  --default PLAYLIST    Set default playlist by index, name, or URI
-  --add QUERY           Add track(s) by name, URL, or URI; supports: splayer list <playlist> --add <query>
-  --tracks PLAYLIST     Show tracks in a playlist by index, name, or URI
-  --add-current PLAYLIST
-                        Add the current track to a playlist
-  --add-track PLAYLIST TRACK_REF
-                        Add a track by name, URL, or URI to a playlist
-
-Examples:
-  splayer list BEST
-  splayer list -h
-  splayer list --help
-```
