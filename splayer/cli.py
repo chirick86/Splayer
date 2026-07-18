@@ -18,6 +18,7 @@ from .playlist import (
     create_playlist,
     print_playlist_tracks,
     add_track_to_playlist,
+    add_uris_to_playlist,
     add_to_active_playlist,
     add_current_track_to_playlist,
     set_default_playlist,
@@ -114,9 +115,10 @@ def cmd_list(args):
             add_to_active_playlist(args.add)
     elif args.tracks:
         print_playlist_tracks(args.tracks)
-    elif args.add_track:
-        playlist_ref, track_uri = args.add_track
-        add_track_to_playlist(playlist_ref, track_uri)
+    elif args.add_uris:
+        uri_source = args.add_uris[0] if len(
+            args.add_uris) == 1 else args.add_uris
+        add_uris_to_playlist(args.playlist, uri_source)
     elif args.add_current:
         add_current_track_to_playlist(args.add_current)
     elif args.playlist:
@@ -289,8 +291,13 @@ def main():
         "--tracks", metavar="PLAYLIST", help="Show tracks in a playlist by index, name, or URI")
     playlist_actions.add_argument(
         "--add-current", metavar="PLAYLIST", help="Add the current track to a playlist")
-    playlist_actions.add_argument("--add-track", nargs=2, metavar=(
-        "PLAYLIST", "TRACK_REF"), help="Add a track by name, URL, or URI to a playlist")
+    playlist_actions.add_argument(
+        "--add-uris",
+        "-add-uris",
+        nargs="+",
+        metavar="URI|FILE",
+        help="Add track URIs from a file path or inline sequence to the active or selected playlist",
+    )
     p.add_argument(
         "playlist",
         nargs="?",

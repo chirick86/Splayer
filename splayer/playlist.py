@@ -1,6 +1,7 @@
 from .catalog import resolve_track_uris_for_add
 from .config import load_config, update_config
 from .spotify import ensure_device, get_client, spotify_call
+from .uri_input import chunked, load_track_uris
 
 
 def get_current_playlist(playback=None, sp=None):
@@ -194,6 +195,22 @@ def add_track_to_playlist(playlist_ref, track_ref):
     track_uris = resolve_track_uris_for_add(track_ref, sp=sp)
 
     for chunk in _chunked(track_uris, 100):
+        spotify_call(sp.playlist_add_items, playlist["uri"], chunk)
+
+    print(f'Added {len(track_uris)} track(s) to playlist: {playlist["name"]}')
+
+
+def add_uris_to_playlist(playlist_ref, uri_source):
+    sp = get_client()
+    playlist = _resolve_target_playlist(sp, playlist_ref)
+
+    if not playlist:
+        print("No target playlist selected")
+        return
+
+    track_uris = load_track_uris(uri_source)
+
+    for chunk in chunked(track_uris, 100):
         spotify_call(sp.playlist_add_items, playlist["uri"], chunk)
 
     print(f'Added {len(track_uris)} track(s) to playlist: {playlist["name"]}')
